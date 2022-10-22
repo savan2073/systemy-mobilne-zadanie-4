@@ -21,7 +21,7 @@ public class TaskListFragment extends Fragment {
     private TaskAdapter adapter;
 
 
-    public static final String KEY_EXTRA_TASK_ID = "key_extra_task_id";
+    public static final String KEY_EXTRA_TASK_ID = "KEY_EXTRA_TASK_ID";
 
 
     @Override

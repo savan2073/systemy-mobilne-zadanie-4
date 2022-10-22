@@ -18,10 +18,6 @@ public class Task {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -32,10 +28,6 @@ public class Task {
 
     public Date getDate() {
         return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public boolean isDone() {

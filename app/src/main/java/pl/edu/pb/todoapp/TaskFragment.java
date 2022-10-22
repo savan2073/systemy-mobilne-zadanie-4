@@ -35,7 +35,7 @@ public class TaskFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         UUID taskId = (UUID) getArguments().getSerializable(ARG_TASK_ID);
@@ -46,7 +46,7 @@ public class TaskFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_task, container, false);
 
@@ -56,13 +56,13 @@ public class TaskFragment extends Fragment {
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void beforeTextChanged(CharSequence s, int start, int before, int count) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                task.setName(charSequence.toString());
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                task.setName(s.toString());
             }
 
             @Override
@@ -77,7 +77,6 @@ public class TaskFragment extends Fragment {
 
         doneCheckBox.setChecked(task.isDone());
         doneCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> task.setDone(isChecked));
-
 
         return view;
 

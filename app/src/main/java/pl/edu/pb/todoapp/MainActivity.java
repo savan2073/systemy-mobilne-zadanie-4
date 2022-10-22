@@ -1,10 +1,9 @@
 package pl.edu.pb.todoapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import android.os.Bundle;
+import pl.edu.pb.todoapp.TaskFragment;
+import pl.edu.pb.todoapp.TaskListFragment;
 
 import java.util.UUID;
 

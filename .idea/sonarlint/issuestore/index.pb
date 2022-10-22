@@ -20,3 +20,9 @@ w
 Gapp/src/androidTest/java/pl/edu/pb/todoapp/ExampleInstrumentedTest.java,b\4\b4a139b8314dbf94c6e6c149f6f1e8ec24425f14
 h
 8app/src/test/java/pl/edu/pb/todoapp/ExampleUnitTest.java,3\2\3222a7e4b22ae6e2243b28b5f3b3078053301f6e
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35

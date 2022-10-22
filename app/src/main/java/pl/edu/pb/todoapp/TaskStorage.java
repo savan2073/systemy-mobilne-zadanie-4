@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class TaskStorage {
 
-    private static TaskStorage instance;
+    private static TaskStorage instance = null;
 
     private final List<Task> tasks;
 
@@ -31,9 +31,9 @@ public class TaskStorage {
         return tasks;
     }
 
-    public Task getTask(UUID taskId) {
+    public Task getTask(UUID Id) {
         for(Task task : tasks) {
-            if(taskId.equals(task.getId()))
+            if(task.getId().equals(Id))
                 return task;
         }
         return null;

@@ -11,8 +11,8 @@ import androidx.fragment.app.FragmentManager;
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
@@ -20,7 +20,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container);
 
         if(fragment == null){
-            fragment = new TaskFragment();
+            fragment = createFragment();
             fragmentManager.beginTransaction()
                     .add(R.id.fragment_container, fragment)
                     .commit();
