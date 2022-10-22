@@ -9,7 +9,7 @@ public class Task {
     private Date date;
     private boolean done;
 
-    public Task(){
+    public Task() {
         id = UUID.randomUUID();
         date = new Date();
     }

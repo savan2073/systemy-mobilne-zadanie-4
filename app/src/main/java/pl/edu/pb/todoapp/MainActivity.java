@@ -1,10 +1,6 @@
 package pl.edu.pb.todoapp;
 
 import androidx.fragment.app.Fragment;
-
-import pl.edu.pb.todoapp.TaskFragment;
-import pl.edu.pb.todoapp.TaskListFragment;
-
 import java.util.UUID;
 
 public class MainActivity extends SingleFragmentActivity {
