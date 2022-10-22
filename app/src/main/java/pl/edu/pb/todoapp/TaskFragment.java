@@ -27,6 +27,8 @@ public class TaskFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         task = new Task();
+
+
     }
 
     @Nullable
