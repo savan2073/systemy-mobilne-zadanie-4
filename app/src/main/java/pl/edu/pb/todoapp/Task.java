@@ -9,6 +9,8 @@ public class Task {
     private Date date;
     private boolean done;
 
+    Category category;
+
     public Task() {
         id = UUID.randomUUID();
         date = new Date();
@@ -16,6 +18,10 @@ public class Task {
 
     public UUID getId() {
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,11 +36,23 @@ public class Task {
         return date;
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public boolean isDone() {
         return done;
     }
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
