@@ -1,6 +1,7 @@
 package pl.edu.pb.todoapp;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -99,6 +100,9 @@ public class TaskListFragment extends Fragment {
                 iconImageView.setImageResource(R.drawable.ic_university);
             }
             taskCheckBox.setChecked(task.isDone());
+            if(taskCheckBox.isChecked()){
+                nameTextView.setPaintFlags(nameTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            }
         }
 
         @Override
