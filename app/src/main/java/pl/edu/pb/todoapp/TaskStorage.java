@@ -1,19 +1,25 @@
 package pl.edu.pb.todoapp;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class TaskStorage {
-    private static final TaskStorage taskStorage = new TaskStorage();
+
+    private static TaskStorage instance;
 
     private final List<Task> tasks;
 
-    public static TaskStorage getInstance(){ return taskStorage;}
+    public static TaskStorage getInstance() {
+        if(instance == null) {
+            instance = new TaskStorage();
+        }
+        return instance;
+    }
 
-    private TaskStorage(){
+    private TaskStorage() {
         tasks = new ArrayList<>();
-        for(int i = 1; i < 201; i++){
+        for(int i = 1; i <= 150; i++) {
             Task task = new Task();
             task.setName("Pilne zadanie numer " + i);
             task.setDone(i % 3 == 0);
@@ -21,19 +27,15 @@ public class TaskStorage {
         }
     }
 
-    public Task get(int indeks){
-        return tasks.get(indeks);
-    }
-
-    public List<Task> getTasks(){
+    public List<Task> getTasks() {
         return tasks;
     }
 
-    public void set(int indeks, Task zadanie){
-        Array.set(tasks, indeks, zadanie);
-    }
-
-    public int length(){
-        return tasks.size();
+    public Task getTask(UUID taskId) {
+        for(Task task : tasks) {
+            if(taskId.equals(task.getId()))
+                return task;
+        }
+        return null;
     }
 }

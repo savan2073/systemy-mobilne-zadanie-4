@@ -1,5 +1,6 @@
 package pl.edu.pb.todoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,15 +19,20 @@ public class TaskListFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TaskAdapter adapter;
-    private TextView nameTextView;
-    private TextView dateTextView;
 
 
+    public static final String KEY_EXTRA_TASK_ID = "key_extra_task_id";
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //return super.onCreateView(inflater, container, savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
 
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
         recyclerView = view.findViewById(R.id.task_recycler_view);
@@ -34,6 +40,17 @@ public class TaskListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateView();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     private void updateView(){
@@ -52,6 +69,9 @@ public class TaskListFragment extends Fragment {
 
         private Task task;
 
+        private TextView nameTextView;
+        private TextView dateTextView;
+
         public TaskHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_task, parent, false));
             itemView.setOnClickListener(this);
@@ -68,7 +88,9 @@ public class TaskListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.putExtra(KEY_EXTRA_TASK_ID, task.getId());
+            startActivity(intent);
         }
     }
 
