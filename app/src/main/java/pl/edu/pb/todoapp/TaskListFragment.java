@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,9 +80,26 @@ public class TaskListFragment extends Fragment {
                 intent.putExtra(TaskListFragment.KEY_EXTRA_TASK_ID, task.getId());
                 startActivity(intent);
                 return true;
+            case R.id.show_subtitle:
+                updateSubtitle();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void updateSubtitle(){
+        TaskStorage taskStorage = TaskStorage.getInstance();
+        List<Task> tasks = taskStorage.getTasks();
+        int todoTasksCount = 0;
+        for(Task task : tasks){
+            if(!task.isDone()){
+                todoTasksCount++;
+            }
+        }
+        String subtitle = getString(R.string.subtitle_format, todoTasksCount);
+        AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
+        appCompatActivity.getSupportActionBar().setSubtitle(subtitle);
     }
 
     private void updateView(){

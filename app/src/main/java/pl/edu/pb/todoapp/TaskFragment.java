@@ -8,9 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,6 +33,7 @@ public class TaskFragment extends Fragment {
     private Button dateField;
     private CheckBox doneCheckBox;
     private final Calendar calendar = Calendar.getInstance();
+    private Spinner categorySpinner;
     private Task task;
 
     public static TaskFragment newInstance(UUID taskId) {
@@ -60,6 +64,7 @@ public class TaskFragment extends Fragment {
         nameField = view.findViewById(R.id.task_name);
         dateField = view.findViewById(R.id.task_date);
         doneCheckBox = view.findViewById(R.id.task_done);
+        categorySpinner = view.findViewById(R.id.task_category);
         Log.d(TODO_TAG,"Znaleziono obiekty");
 
         nameField.setText(task.getName());
@@ -99,6 +104,20 @@ public class TaskFragment extends Fragment {
                 new DatePickerDialog(getContext(), date, calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show());
         setupDateFieldValue(task.getDate());
+
+        categorySpinner.setAdapter(new ArrayAdapter<>(this.getContext(), android.R.layout.simple_spinner_item, Category.values()));
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                task.setCategory(Category.values()[position]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        categorySpinner.setSelection(task.getCategory().ordinal());
 
         return view;
 
