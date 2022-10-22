@@ -98,11 +98,7 @@ public class TaskListFragment extends Fragment {
             }else{
                 iconImageView.setImageResource(R.drawable.ic_university);
             }
-            if(task.isDone() == false){
-                taskCheckBox.setChecked(false);
-            }else{
-                taskCheckBox.setChecked(true);
-            }
+            taskCheckBox.setChecked(task.isDone());
         }
 
         @Override
@@ -110,6 +106,10 @@ public class TaskListFragment extends Fragment {
             Intent intent = new Intent(getActivity(), MainActivity.class);
             intent.putExtra(KEY_EXTRA_TASK_ID, task.getId());
             startActivity(intent);
+        }
+
+        public CheckBox getCheckBox() {
+            return taskCheckBox;
         }
     }
 
@@ -131,6 +131,10 @@ public class TaskListFragment extends Fragment {
         public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
             Task task = tasks.get(position);
             holder.bind(task);
+
+            CheckBox checkBox = holder.getCheckBox();
+            checkBox.setChecked(tasks.get(position).isDone());
+            checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> tasks.get(holder.getBindingAdapterPosition()).setDone(isChecked));
 
         }
 
