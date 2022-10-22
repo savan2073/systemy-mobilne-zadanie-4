@@ -6,6 +6,9 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -33,6 +36,7 @@ public class TaskListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("Many","OnCreate");
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -57,6 +61,27 @@ public class TaskListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         updateView();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_task_menu,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.new_task:
+                Task task = new Task();
+                TaskStorage.getInstance().addTask(task);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.putExtra(TaskListFragment.KEY_EXTRA_TASK_ID, task.getId());
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void updateView(){

@@ -14,6 +14,7 @@ public class Task {
     public Task() {
         id = UUID.randomUUID();
         date = new Date();
+        category = Category.dom;
     }
 
     public UUID getId() {
