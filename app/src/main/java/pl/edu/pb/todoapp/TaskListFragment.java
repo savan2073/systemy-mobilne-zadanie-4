@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -76,6 +77,7 @@ public class TaskListFragment extends Fragment {
         private TextView nameTextView;
         private TextView dateTextView;
         private ImageView iconImageView;
+        private CheckBox taskCheckBox;
 
         public TaskHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_task, parent, false));
@@ -84,6 +86,7 @@ public class TaskListFragment extends Fragment {
             nameTextView = itemView.findViewById(R.id.task_item_name);
             dateTextView = itemView.findViewById(R.id.task_item_date);
             iconImageView = itemView.findViewById(R.id.task_item_icon);
+            taskCheckBox = itemView.findViewById(R.id.task_check_box);
         }
 
         public void bind(Task task){
@@ -94,6 +97,11 @@ public class TaskListFragment extends Fragment {
                 iconImageView.setImageResource(R.drawable.ic_house);
             }else{
                 iconImageView.setImageResource(R.drawable.ic_university);
+            }
+            if(task.isDone() == false){
+                taskCheckBox.setChecked(false);
+            }else{
+                taskCheckBox.setChecked(true);
             }
         }
 
