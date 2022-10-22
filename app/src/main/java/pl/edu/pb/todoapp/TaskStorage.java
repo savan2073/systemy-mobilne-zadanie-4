@@ -25,6 +25,11 @@ public class TaskStorage {
             Task task = new Task();
             task.setName("Pilne zadanie numer " + i);
             task.setDone(i % 3 == 0);
+            if(i % 3 == 0){
+                task.setCategory(Category.studia);
+            }else{
+                task.setCategory(Category.dom);
+            }
             Log.d("Task","Task id to " +task.getId());
             tasks.add(task);
         }
