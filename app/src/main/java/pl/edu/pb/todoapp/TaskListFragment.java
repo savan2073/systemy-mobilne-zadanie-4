@@ -1,11 +1,13 @@
 package pl.edu.pb.todoapp;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -73,6 +75,7 @@ public class TaskListFragment extends Fragment {
 
         private TextView nameTextView;
         private TextView dateTextView;
+        private ImageView iconImageView;
 
         public TaskHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_task, parent, false));
@@ -80,12 +83,18 @@ public class TaskListFragment extends Fragment {
 
             nameTextView = itemView.findViewById(R.id.task_item_name);
             dateTextView = itemView.findViewById(R.id.task_item_date);
+            iconImageView = itemView.findViewById(R.id.task_item_icon);
         }
 
         public void bind(Task task){
             this.task = task;
             nameTextView.setText(task.getName());
             dateTextView.setText(task.getDate().toString());
+            if(task.getCategory().equals(Category.dom)){
+                iconImageView.setImageResource(R.drawable.ic_house);
+            }else{
+                iconImageView.setImageResource(R.drawable.ic_university);
+            }
         }
 
         @Override
