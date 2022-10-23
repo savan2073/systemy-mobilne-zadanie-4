@@ -22,13 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:singleLine="true"
-            android:text="TextView" />
+            android:text="@string/text_placeholder" />
 
         <TextView
             android:id="@+id/task_item_date"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="TextView" />
+            android:text="@string/text_placeholder" />
     </LinearLayout>
 
     <ImageView
@@ -36,6 +36,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:padding="@dimen/task_item_padding"
         tools:srcCompat="@drawable/ic_house" />
 
 </LinearLayout>
